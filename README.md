@@ -1,7 +1,7 @@
 # AlgoExpert
 ## Array
 ### 1. [https://www.algoexpert.io/questions/two-number-sum](https://www.algoexpert.io/questions/two-number-sum)
-#### __________________________________________________________________________________________________________
+
 
 *#Time O(n^2)  | Space O(1)*
 ```
@@ -14,9 +14,9 @@ def twoNumberSum(array, targetSum):
                 return [array[i] , array[j]]
     return []
 ```
-
+### __________________________________________________________________________________________________________
 ### 2. [https://www.algoexpert.io/questions/validate-subsequence](https://www.algoexpert.io/questions/validate-subsequence)
-#### __________________________________________________________________________________________________________
+
 *# Time O(n) | Space O(1)*
 ```
 def isValidSubsequence(array, sequence):
@@ -43,5 +43,5 @@ def isValidSubsequence(array, sequence):
             seq_indx += 1
     return seq_indx == len(sequence)
 ```
-
+### __________________________________________________________________________________________________________
 
