@@ -3,7 +3,7 @@
 ### 1. [https://www.algoexpert.io/questions/two-number-sum](https://www.algoexpert.io/questions/two-number-sum)
 
 
-*#1 Time O(n^2)  | Space O(1)*
+*#1.1 Time O(n^2)  | Space O(1)*
 ```
 def twoNumberSum(array, targetSum):
     # Write your code here.
@@ -16,7 +16,7 @@ def twoNumberSum(array, targetSum):
 ```
 
 
-*#2 Time O(n) Space O(n)*
+*#1.2 Time O(n) Space O(n)*
 ```
 def twoNumberSum(array, targetSum):
     # Write your code here.
@@ -32,7 +32,7 @@ def twoNumberSum(array, targetSum):
 
     return []
 ```
-*#3 Time O(nlog(n)) Space O(1) with binary search*
+*#1.3 Time O(nlog(n)) Space O(1) with binary search*
 ```
 def twoNumberSum(array, targetSum):
     # Write your code here.
@@ -57,7 +57,7 @@ def twoNumberSum(array, targetSum):
 
 ### 2. [https://www.algoexpert.io/questions/validate-subsequence](https://www.algoexpert.io/questions/validate-subsequence)
 
-*# Time O(n) | Space O(1)*
+*#2.1 Time O(n) | Space O(1)*
 ```
 def isValidSubsequence(array, sequence):
     # Write your code here.  
@@ -72,7 +72,7 @@ def isValidSubsequence(array, sequence):
     return seq_indx ==len(sequence)
 ```
 
-*# Time O(n) | Space O(1)*
+*#2.2 Time O(n) | Space O(1)*
 ```
 def isValidSubsequence(array, sequence):
     seq_indx = 0
