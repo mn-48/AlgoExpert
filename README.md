@@ -44,5 +44,23 @@ def isValidSubsequence(array, sequence):
             seq_indx += 1
     return seq_indx == len(sequence)
 ```
-### ____________________________________________________________________________________________________________
 
+
+*Time O(n) Space O(n)*
+```
+def twoNumberSum(array, targetSum):
+    # Write your code here.
+    nums = {}
+
+    for x in array:
+        y = targetSum-x
+
+        if y in nums:
+            return [x, y]
+        else:
+            nums[x] = True
+
+    return []
+```
+### ____________________________________________________________________________________________________________
+### ____________________________________________________________________________________________________________
