@@ -84,7 +84,10 @@ def isValidSubsequence(array, sequence):
     return seq_indx == len(sequence)
 ```
 
-
 ### ________________________________________________________________________________________________
+
+### 3. [https://www.algoexpert.io/questions/validate-subsequence](https://www.algoexpert.io/questions/validate-subsequence)
+
+*#3.1 Time O(n) | Space O(1)*
 ### ________________________________________________________________________________________________
 ### ________________________________________________________________________________________________
