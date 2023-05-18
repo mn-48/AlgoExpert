@@ -3,7 +3,7 @@
 ### 1. [https://www.algoexpert.io/questions/two-number-sum](https://www.algoexpert.io/questions/two-number-sum)
 
 
-*#Time O(n^2)  | Space O(1)*
+*#1 Time O(n^2)  | Space O(1)*
 ```
 def twoNumberSum(array, targetSum):
     # Write your code here.
@@ -16,7 +16,7 @@ def twoNumberSum(array, targetSum):
 ```
 
 
-*Time O(n) Space O(n)*
+*#2 Time O(n) Space O(n)*
 ```
 def twoNumberSum(array, targetSum):
     # Write your code here.
@@ -32,8 +32,26 @@ def twoNumberSum(array, targetSum):
 
     return []
 ```
+*#3 Time O(nlog(n)) Space O(1) with binary search*
+```
+def twoNumberSum(array, targetSum):
+    # Write your code here.
+    array.sort()
 
+    n = len(array)
+    left = 0
+    right = n-1
 
+    while left < right:
+        if array[left] + array[right] == targetSum:
+            return [array[left], array[right]]
+        elif array[left] + array[right] > targetSum:
+            right -= 1 
+        elif array[left] + array[right] < targetSum:
+            left += 1 
+    return []
+
+```
 ### ________________________________________________________________________________________________
     
 
