@@ -116,6 +116,7 @@ def sortedSquaredArray(array):
     return ans
 
 ```
+### 4. [https://www.algoexpert.io/questions/sorted-squared-array](https://www.algoexpert.io/questions/sorted-squared-array)
 
 ### ________________________________________________________________________________________________
 ### ________________________________________________________________________________________________
