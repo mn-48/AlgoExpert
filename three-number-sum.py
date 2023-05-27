@@ -1,5 +1,3 @@
-# time complexity O(n^2) | Space Complexity O(n)
-
 def threeNumberSum(array, targetSum):
     # Write your code here.
     triplets = []

@@ -116,7 +116,67 @@ def sortedSquaredArray(array):
     return ans
 
 ```
-### 4. [https://www.algoexpert.io/questions/sorted-squared-array](https://www.algoexpert.io/questions/sorted-squared-array)
 
+
+### 4. [https://www.algoexpert.io/questions/tournament-winner](https://www.algoexpert.io/questions/tournament-winner)
+*# Time Complexity O(n) | Space Complexity O(n)*
+```
+def tournamentWinner(competitions, results):
+    # Write your code here.
+    scores = {}
+    for c, r in zip(competitions, results):
+        if r==1:
+            scores[c[0]] = scores.get(c[0], 0)+3
+        else:
+            scores[c[1]] = scores.get(c[1], 0)+3
+           
+    best_team = max(scores, key=lambda k: scores[k])
+    return best_team
+```
+
+### 5. [https://www.algoexpert.io/questions/non-constructible-change](https://www.algoexpert.io/questions/non-constructible-change)
+*# Time Complexity O(nlog(n)) | Space Complexity O(1)*
+```
+def nonConstructibleChange(coins):
+    coins.sort()
+    # Write your code here.
+    current_sum = 0
+    for i in coins:
+        if i > current_sum+1:
+            break
+        current_sum+=i
+            
+    return current_sum+1
+
+```
+### 6. [https://www.algoexpert.io/questions/three-number-sum](https://www.algoexpert.io/questions/three-number-sum)
+*# # time complexity O(n^2) | Space Complexity O(n)*
+```
+def threeNumberSum(array, targetSum):
+    # Write your code here.
+    triplets = []
+    array.sort()
+    for i in range(len(array)-2):
+        left = i+1
+        right =len(array) - 1
+        
+        while left < right:
+            current_sum = array[i] + array[left] + array[right]
+            if current_sum == targetSum:
+                triplets.append([array[i], array[left], array[right]])
+                left +=1
+                right -=1
+                
+            elif current_sum < targetSum:
+                left +=1
+            elif current_sum > targetSum:
+                right -=1
+    
+    return triplets    
+        
+    
+
+
+```
 ### ________________________________________________________________________________________________
 ### ________________________________________________________________________________________________
