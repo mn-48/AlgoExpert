@@ -149,6 +149,7 @@ def nonConstructibleChange(coins):
     return current_sum+1
 
 ```
+
 ### 6. [https://www.algoexpert.io/questions/three-number-sum](https://www.algoexpert.io/questions/three-number-sum)
 *# # time complexity O(n^2) | Space Complexity O(n)*
 ```
@@ -176,6 +177,36 @@ def threeNumberSum(array, targetSum):
         
     
 
+
+```
+
+### 7. [https://www.algoexpert.io/questions/smallest-difference](https://www.algoexpert.io/questions/smallest-difference)
+*# # Time O(nlog(n)+mlog(m)) | space O(1)*
+```
+
+
+def smallestDifference(arrayOne, arrayTwo):
+    arrayOne.sort()
+    arrayTwo.sort()
+
+    i , j = 0, 0
+
+    smallest = float('inf')
+    pair = []
+
+    while i < len(arrayOne) and j < len(arrayTwo):
+        n1 = arrayOne[i]
+        n2 = arrayTwo[j]
+        current = abs(n1- n2)
+
+        if current < smallest:
+            smallest = current
+            pair = [n1, n2]
+        if n1 > n2:
+            j+=1
+        else:
+            i+=1
+    return pair
 
 ```
 ### ________________________________________________________________________________________________
