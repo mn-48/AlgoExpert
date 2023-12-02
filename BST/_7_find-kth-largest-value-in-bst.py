@@ -1,5 +1,4 @@
-# This is an input class. Do not edit.
-# O(h+k) Time| O(k) space
+# O(n) Time | O(h) space
 class BST:
     def __init__(self, value, left=None, right=None):
         self.value = value
@@ -7,23 +6,25 @@ class BST:
         self.right = right
 
 class TreeInfo:
-    def __init__(self, numberOfVisitedNode, lastVisitedNodeValue):
-        self.numberOfVisitedNode = numberOfVisitedNode
-        self.lastVisitedNodeValue = lastVisitedNodeValue
+    def __init__(self, rootIdx):
+        self.rootIdx = rootIdx
 
 
-def findKthLargestValueInBst(tree, k):
-    treeInfo = TreeInfo(0, -1)
-    reverseInOrderTraverse(tree, k, treeInfo)
-    return treeInfo.lastVisitedNodeValue
+def reconstructBst(preOrderTraversalValues):
+    treeInfo = TreeInfo(0)
+    return reconstructBstFromRange(float('-inf'), float('inf'), preOrderTraversalValues, treeInfo)
 
-def reverseInOrderTraverse(node, k, treeInfo):
-    if node == None or  treeInfo.numberOfVisitedNode >= k:
-        return
-    reverseInOrderTraverse(node.right, k, treeInfo)
-    if treeInfo.numberOfVisitedNode < k:
-        treeInfo.numberOfVisitedNode += 1
-        treeInfo.lastVisitedNodeValue = node.value
-        reverseInOrderTraverse(node.left, k, treeInfo)
+def reconstructBstFromRange(lowerBound, upperBound, preOrderTraversalValues, currentSubTreeInfo):
 
+    if currentSubTreeInfo.rootIdx == len(preOrderTraversalValues):
+        return None
     
+    rootValue = preOrderTraversalValues[currentSubTreeInfo.rootIdx]
+
+    if rootValue < lowerBound or rootValue >= upperBound:
+        return None
+    currentSubTreeInfo.rootIdx += 1
+    leftSubtree = reconstructBstFromRange(lowerBound, rootValue, preOrderTraversalValues, currentSubTreeInfo)
+    rightSubtree = reconstructBstFromRange(rootValue, upperBound, preOrderTraversalValues, currentSubTreeInfo)
+    return BST(rootValue, leftSubtree, rightSubtree)
+
