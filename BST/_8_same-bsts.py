@@ -1,4 +1,4 @@
-O(n^2) Time | O(n^2) Space
+# O(n^2) Time | O(n^2) Space
 def sameBsts(arrayOne, arrayTwo):
     if len(arrayOne) != len(arrayTwo):
         return False
