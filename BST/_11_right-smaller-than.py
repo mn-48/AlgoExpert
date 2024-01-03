@@ -28,6 +28,6 @@ def rightSmallerThan(array):
         bisect.insort(sorted_array, array[i])
     return results
 
-# array = [8, 5, 11, -1, 3, 4, 2]
-# # expected = [5, 4, 4, 0, 1, 1, 0]
-# print(rightSmallerThan(array))
+array = [8, 5, 11, -1, 3, 4, 2]
+# expected = [5, 4, 4, 0, 1, 1, 0]
+print(rightSmallerThan(array))
