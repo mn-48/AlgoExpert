@@ -21,7 +21,6 @@ def evaluateExpressionTree(tree):
 
     if tree.value == -3:
         return int(leftValue / rightValue)
-
     
     return leftValue * rightValue
 
