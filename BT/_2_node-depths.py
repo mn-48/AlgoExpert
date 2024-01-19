@@ -1,4 +1,4 @@
-# O(h) Time | O(1) Space
+# O(n) Time | O(h) Space
 def nodeDepths(root, depth = 0):
     # Write your code here
     return 0 if root is None else depth + nodeDepths(root.left, depth+1) + nodeDepths(root.right, depth+1)
