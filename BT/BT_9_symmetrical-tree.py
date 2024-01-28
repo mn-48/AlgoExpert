@@ -5,6 +5,7 @@ class BinaryTree:
         self.left = left
         self.right = right
 
+# Recursive solution ========================================== 
 # O(n) Time | O(h) Space
 def symmetricalTree(tree):
     return isSymmetricalTree(tree.left, tree.right)
@@ -14,3 +15,27 @@ def isSymmetricalTree(tree1, tree2):
            return  isSymmetricalTree(tree1.left, tree2.right) and isSymmetricalTree(tree1.right, tree2.left)
     return tree1==tree2
     
+
+# Iterative solution ========================================== 
+# O(n) Time | O(h) Space
+def symmetricalTree(tree):
+    stackLeft = [tree.left]
+    stackRight = [tree.right]
+
+    while len(stackLeft) > 0:
+        left = stackLeft.pop()
+        right = stackRight.pop()
+
+        if left is None and right is None:
+            continue
+
+        if left is None or right is None or left.value != right.value:
+            return False
+
+        stackLeft.append(left.left)
+        stackLeft.append(left.right)
+        stackRight.append(right.right)
+        stackRight.append(right.left)
+
+    return True
+
