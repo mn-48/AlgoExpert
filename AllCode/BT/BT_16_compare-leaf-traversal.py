@@ -18,8 +18,6 @@ def compareLeafTraversal(tree1, tree2):
     else:
         return False
 
-
-
 def arrayOfLeaves(tree, array):
     if tree is None:
         return
