@@ -1,6 +1,7 @@
+# O(n^2) Time | O(n) Space
 def maxSumIncreasingSubsequence(array):
-    # sequences  = [None] * len(array)
-    sequences  = [None for x in array] 
+    sequences  = [None] * len(array)
+    # sequences  = [None for x in array] 
     sums = array[:]
     maxSumIdx = 0
     for i in range(len(array)):
@@ -11,7 +12,7 @@ def maxSumIncreasingSubsequence(array):
             
             if otherNumber < currentNumber and sums[j] + currentNumber >= sums[i]:
                 sums[i] = sums[j] + currentNumber
-                sequence[i] = j
+                sequences[i] = j
         if sums[i] >= sums[maxSumIdx]:
             maxSumIdx = i
     return [sums[maxSumIdx], buildSequence(array, sequences, maxSumIdx)]
