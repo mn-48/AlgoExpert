@@ -1,4 +1,4 @@
-# O(n) Time | O(n) Space
+# O(n^2) Time | O(n) Space
 def minNumberOfJumps(array):
     jumps = [float('inf') for i in array]
     jumps[0] = 0
