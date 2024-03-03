@@ -24,9 +24,9 @@ def longestCommonSubsequence(str1, str2):
                 lcs[i][j] = [str2[i-1], lcs[i-1][j-1][1]+1, i-1, j-1]
             else:
                 if lcs[i-1][j][1] > lcs[i][j-1][1]:
-                    lcs[i][j]= [None, lcs[i-1][j], i-1, j]
+                    lcs[i][j]= [None, lcs[i-1][j][1], i-1, j]
                 else:
-                    lcs[i][j]= [None, lcs[i][j-1], i, j-1]
+                    lcs[i][j]= [None, lcs[i][j-1][1], i, j-1]
                 
     return buildSequence(lcs)
 
