@@ -32,10 +32,6 @@ def getKnapsakItems(knapsakValues, items):
             break
     return list(reversed(sequence))
 
-
-
-
-
     
         
 if __name__=="__main__":
