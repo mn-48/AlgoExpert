@@ -1,7 +1,7 @@
+# O(n*n!) Time | O(n*n!) Space
 from itertools import permutations
 def getPermutations(array):
     perms_dic = permutations(array)
-    print(*perms_dic)
     ans = []
     if len(array) == 0:
         return []
