@@ -10,18 +10,21 @@
 #     return seq_indx == len(sequence)
 
 
-
 # Time O(n) | Space O(1)
+
 def isValidSubsequence(array, sequence):
-    # Write your code here.  
-    arr_indx = 0
-    seq_indx = 0
-
-    while arr_indx<len(array) and seq_indx< len(sequence):
-        if array[arr_indx] == sequence[seq_indx]:
-            seq_indx +=1
-        
-        arr_indx += 1
-    return seq_indx ==len(sequence)
-
+    arr_idx = 0
+    seq_idx = 0
+    
+    while arr_idx < len(array) and seq_idx < len(sequence):
+        if array[arr_idx] == sequence[seq_idx]:
+            seq_idx += 1
+        arr_idx +=1
+    return seq_idx == len(sequence)
+            
    
+
+if __name__=="__main__":
+    ans = isValidSubsequence(list("codeforces"), list("forces"))
+    print(ans)
+        
