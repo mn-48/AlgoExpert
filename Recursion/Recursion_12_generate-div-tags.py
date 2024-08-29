@@ -17,3 +17,6 @@ def generateDivTagsFromPrefix(openingTagsNeeded, closingTagsNeeded, prefix, resu
     if closingTagsNeeded ==0:
         result.append(prefix)
         
+if __name__=="__main__":
+    ans = generateDivTags(3)
+    print(ans)
