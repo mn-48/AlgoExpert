@@ -1,4 +1,4 @@
-# O(v+e) Time | O(v) Space
+# O(V+E) Time | O(V) Space
 class Node:
     def __init__(self, name):
         self.children = []
@@ -8,12 +8,13 @@ class Node:
         self.children.append(Node(name))
         return self
 
+    # O(V+E) Time | O(V) Space
     def depthFirstSearch(self, array):
         array.append(self.name)
-        for child in self.children:
-            child.depthFirstSearch(array)
+        for clild in self.children:
+            clild.depthFirstSearch(array)
         return array
-
+            
 
 if __name__ == "__main__":
     '''
@@ -34,3 +35,8 @@ if __name__ == "__main__":
     graph.children[0].children[1].addChild("I").addChild("J")
     graph.children[2].children[0].addChild("K")
     print(graph.depthFirstSearch([]))
+
+    '''
+    
+    
+    '''
