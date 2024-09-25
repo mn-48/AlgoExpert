@@ -1,5 +1,5 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout, QLabel, QPushButton
+from PyQt5.QtWidgets import QApplication, QWidget, QGridLayout, QLabel, QPushButton, QVBoxLayout, QHBoxLayout
 from PyQt5.QtCore import QTimer, Qt
 from PyQt5.QtGui import QPainter, QPen
 
@@ -11,7 +11,7 @@ class CycleVisualizer(QWidget):
         self.current_idx = 0
         self.num_element_visited = 0
         self.visited_indices = set()
-        self.path = []  # Track the path for line drawing
+        self.next_idx = None  # Track the next index for line drawing
 
         # Set up the grid layout
         self.grid = QGridLayout()
@@ -37,17 +37,17 @@ class CycleVisualizer(QWidget):
         self.start_button.clicked.connect(self.start_cycle)
         self.grid.addWidget(self.start_button, 2, len(self.array)//2)
         
-        self.setWindowTitle("Single Cycle Path Visualization")
-        self.setGeometry(100, 100, 800, 300)  # Increase height to allow space above the boxes
+        self.setWindowTitle("Single Cycle Visualization with Line Transitions")
+        self.setGeometry(100, 100, 800, 200)
         self.show()
     
     def start_cycle(self):
         self.current_idx = 0
         self.num_element_visited = 0
         self.visited_indices = set()
-        self.path = []  # Clear the path for a new run
+        self.next_idx = None
         self.update()  # Redraw to clear lines
-        self.timer.start(1000)  # Start the timer to simulate steps every 1 second
+        self.timer.start(2000)  # Start the timer to simulate steps every 1 second
     
     def simulate_step(self):
         # Stop if we visited all elements or revisit the start index prematurely
@@ -66,9 +66,8 @@ class CycleVisualizer(QWidget):
             self.labels[i].setStyleSheet("background-color: lightgray; padding: 20px; border: 1px solid black;")
         self.labels[self.current_idx].setStyleSheet("background-color: yellow; padding: 20px; border: 1px solid black;")
         
-        # Get the next index and add the current and next index to the path for line drawing
-        next_idx = self.get_next_idx(self.current_idx)
-        self.path.append((self.current_idx, next_idx))
+        # Get the next index and prepare for line drawing
+        self.next_idx = self.get_next_idx(self.current_idx)
         self.update()  # Redraw lines
         
         # Simulate visiting the element
@@ -76,7 +75,7 @@ class CycleVisualizer(QWidget):
         self.visited_indices.add(self.current_idx)
         
         # Move to the next index
-        self.current_idx = next_idx
+        self.current_idx = self.next_idx
 
     def get_next_idx(self, current_idx):
         jump = self.array[current_idx]
@@ -85,23 +84,18 @@ class CycleVisualizer(QWidget):
 
     def paintEvent(self, event):
         # Override paintEvent to draw lines
-        if self.path:
+        if self.next_idx is not None:
             painter = QPainter(self)
             pen = QPen(Qt.black, 3)
             painter.setPen(pen)
             
-            # Draw lines for each step in the path
-            for current_idx, next_idx in self.path:
-                # Get the positions of the current_idx and next_idx but adjust vertically to be above the boxes
-                current_pos = self.labels[current_idx].geometry().topLeft()  # Top left corner of the box
-                next_pos = self.labels[next_idx].geometry().topLeft()
+            # Get the positions of current_idx and next_idx
+            current_pos = self.labels[self.current_idx].geometry().center()
+            next_pos = self.labels[self.next_idx].geometry().center()
 
-                # Adjust y-coordinate to be above the box (e.g., 20 pixels above)
-                current_pos.setY(current_pos.y() - 20)
-                next_pos.setY(next_pos.y() - 20)
-
-                # Draw a line above the boxes
-                painter.drawLine(current_pos, next_pos)
+            # Draw a line from the current element to the next element
+            painter.drawLine(current_pos, next_pos)
+            
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
