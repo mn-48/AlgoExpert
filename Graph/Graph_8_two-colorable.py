@@ -17,3 +17,9 @@ def twoColorable(edges):
                         
     # Write your code here.
     return True
+
+
+if __name__=="__main__":
+    edges = [[1], [0]]
+    ans = twoColorable(edges)
+    print(ans)
