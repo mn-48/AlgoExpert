@@ -16,60 +16,80 @@
 # 4) in reversed order, right to left, pick entries and remove everything reachable from them from the list.
 # In the end you will have all the entries: nodes that are not reachable from any other nodes, so they have to be connected to the starting airport to make the entire graph fully connected, which is what the question is asking for
 
-import random
+# import random
 
-#  O(a+r) Time | O(a+r) Space
-def airportConnections(airports, routes, startingAirport):
+# #  O(a+r) Time | O(a+r) Space
+# def airportConnections(airports, routes, startingAirport):
 
-    # adjacency list O(r+a) Time/Space
-    graph = {}
-    for from_ , to_ in routes:
-        if from_ not in graph:
-            graph[from_] = []
-        graph[from_].append(to_)
+#     # adjacency list O(r+a) Time/Space
+#     graph = {}
+#     for from_ , to_ in routes:
+#         if from_ not in graph:
+#             graph[from_] = []
+#         graph[from_].append(to_)
 
-    for airport in airports:
-        if airport not in graph:
-            graph[airport] = []
+#     for airport in airports:
+#         if airport not in graph:
+#             graph[airport] = []
     
-    # get airports reachable from entry O(a+r) time/space
-    def reachableFrom(node, visited):
-        if node in visited:
-            return
-        visited.add(node)
-        for neighbor in graph[node]:
-            reachableFrom(neighbor, visited)
-        return visited
+#     # get airports reachable from entry O(a+r) time/space
+#     def reachableFrom(node, visited):
+#         if node in visited:
+#             return
+#         visited.add(node)
+#         for neighbor in graph[node]:
+#             reachableFrom(neighbor, visited)
+#         return visited
     
-    reachableFromStart = reachableFrom(startingAirport,visited=set()) # O(a+r) time & space
-    unreachableFromStart = set(airports)- reachableFromStart # O(n)
+#     reachableFromStart = reachableFrom(startingAirport,visited=set()) # O(a+r) time & space
+#     unreachableFromStart = set(airports)- reachableFromStart # O(n)
 
-    # MAGIC!!! O(a+r) time/Space
+#     # MAGIC!!! O(a+r) time/Space
 
-    potentialEntries = []
-    while len(unreachableFromStart) > 0:
-        # Order in which you review unreachable nodes is irrelevant
-        # could as well be random, which I show here. otherwise just do
-        # potentialEntry = unreachableFromStart.pop()
-        potentialEntry = random.sample(unreachableFromStart, 1)[0]
-        potentialEntries.append(potentialEntry)
-        unreachableFromStart -= reachableFrom(potentialEntry, visited=set())
+#     potentialEntries = []
+#     while len(unreachableFromStart) > 0:
+#         # Order in which you review unreachable nodes is irrelevant
+#         # could as well be random, which I show here. otherwise just do
+#         # potentialEntry = unreachableFromStart.pop()
+#         potentialEntry = random.sample(unreachableFromStart, 1)[0]
+#         potentialEntries.append(potentialEntry)
+#         unreachableFromStart -= reachableFrom(potentialEntry, visited=set())
 
-    connectionsToAdd = 0
-    while len(potentialEntries) > 0:
-        connectionsToAdd += 1
-        entry = potentialEntries.pop()
-        reachableFromEntry = reachableFrom(entry, visited=set())
-        potentialEntries = [airport for airport in potentialEntries if airport not in reachableFromEntry]
+#     connectionsToAdd = 0
+#     while len(potentialEntries) > 0:
+#         connectionsToAdd += 1
+#         entry = potentialEntries.pop()
+#         reachableFromEntry = reachableFrom(entry, visited=set())
+#         potentialEntries = [airport for airport in potentialEntries if airport not in reachableFromEntry]
 
-    return connectionsToAdd
+#     return connectionsToAdd
          
 
+# O(a+r) Time | O(a+r) Space
+def airportConnections(airports, routes, startingAirport):
+    graph = { airport: [] for airport in airports }
+    for src, dest in routes:
+        graph[src].append(dest)
+
+    visited = set()
+    visitAirports(startingAirport, graph, visited)
+
+    for airport in airports:
+        if airport not in visited:
+            visitAirports(airport, graph, visited)
+            visited.remove(airport) # remove it
+
+    visited.add(startingAirport)
+    return len(airports) - len(visited)
+
+def visitAirports(node, graph, visited):
+    if node not in visited:
+        visited.add(node)
+        for nextNode in graph[node]:
+            visitAirports(nextNode, graph, visited)
 
      
 
-
-    return 
 
 
 
