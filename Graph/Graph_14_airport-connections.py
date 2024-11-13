@@ -78,9 +78,10 @@ def airportConnections(airports, routes, startingAirport):
         if airport not in visited:
             visitAirports(airport, graph, visited)
             visited.remove(airport) # remove it
-
+    # print(visited)
     visited.add(startingAirport)
     return len(airports) - len(visited)
+
 
 def visitAirports(node, graph, visited):
     if node not in visited:
