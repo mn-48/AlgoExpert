@@ -30,7 +30,9 @@ def primsAlgorithm(edges):
             heapq.heappush(minHeap, (nodeWeight, nextNodeDestination, nodeIdx))
 
     return minSpanningTree
-  
+
+
+
 if __name__=="__main__":
     input = [[[1, 1]], [[0, 1]]]
     ans =  primsAlgorithm(input)
