@@ -5,9 +5,9 @@ def searchInSortedMatrix(matrix, target):
     col = len(matrix[0]) -1
 
     while row < len(matrix) and col >= 0:
-        if matrix[row][col] > target:
+        if  target < matrix[row][col]:
             col -=1
-        elif matrix[row][col] < target:
+        elif target > matrix[row][col]:
             row +=1
         else:
             return [row, col]
