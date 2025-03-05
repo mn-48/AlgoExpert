@@ -18,3 +18,8 @@ def balancedBrackets(string):
             else:
                 return False
     return len(stack) == 0
+
+if __name__=="__main__":
+    string = "([])(){}(())()()"
+    ans = balancedBrackets(string)
+    print(ans)
