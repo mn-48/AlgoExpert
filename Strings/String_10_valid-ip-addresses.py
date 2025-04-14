@@ -29,3 +29,7 @@ def isValidPart(string):
     if stringAsInt > 255:
         return False
     return len(string) == len(str(stringAsInt))  # check for leading 0
+
+
+if __name__=="__main__":
+    print(validIPAddresses("1921680"))
